@@ -1,16 +1,10 @@
 <template>
   <div>
     <el-breadcrumb separator-class="el-icon-arrow-right" id="body_title">
-      <el-breadcrumb-item :to="{ path: '/employee/salaryinfo' }"
-        >首页</el-breadcrumb-item
-      >
+      <el-breadcrumb-item :to="{ path: '/employee/salaryinfo' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>个人工资</el-breadcrumb-item>
     </el-breadcrumb>
-    <SalaryData
-      v-bind:salary="salary"
-      v-bind:paytime="paytime"
-      v-bind:months="months"
-    />
+    <SalaryData v-bind:salary="salary" v-bind:paytime="paytime" v-bind:months="months" />
   </div>
 </template>
 <script>
@@ -43,8 +37,9 @@ export default {
   mounted: function () {
     // console.log(this.$route);
     // console.log(this.$store.state)
-    newSalary
-      .getSalary(this.$store.state.data[0].accounts)
+    /*   newSalary */
+    /*  .getSalary(this.$store.state.data[0].accounts) */
+    this.service.post('/employee/Salary', {accounts:this.$store.state.data[0].accounts})
       .then((data) => {
         this.salary = data.map((item) => {
           item.payTime = format.formateDate(item.payTime);
