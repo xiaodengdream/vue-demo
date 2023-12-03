@@ -17,10 +17,12 @@ service.interceptors.request.use((config) => {
 service.interceptors.response.use((response) => {
     //对响应数据做些什么
     let { code, message } = response.data
-    if (code !== 200) {
-        Message({ message: message || 'error', type: 'warning' })
-    } else{
+    if (code === 200) {
         Message({ message: message || 'sucess', type: 'success' })
+    } else if (code === 100) {
+    }
+    else {
+        Message({ message: message || 'error', type: 'warning' })
     }
     return response
 }, (error) => {

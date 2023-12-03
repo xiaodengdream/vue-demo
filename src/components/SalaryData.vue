@@ -56,7 +56,7 @@
         label="发放工资时间"
         sortable
         column-key="month"
-        :filters="this.$props.paytime"
+        :filters="this.$props.payTime"
         :filter-method="filterHandler"
       ></el-table-column>
     </el-table>
@@ -76,9 +76,9 @@ export default {
       return row[property] === value;
     },
   },
-  props: ["salary", "paytime", "months"],
+  props: ["salary", "payTime", "months"],
   mounted() {
-    //console.log(this.$props);
+   /*  console.log(this.$props); */
   },
 };
 </script>

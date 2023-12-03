@@ -5,18 +5,19 @@
 </template>
 
 <script>
-import gettoken from "./until/gettoken";
 export default {
   created() {
-    if (sessionStorage.getItem("store")) {
+    /* if (sessionStorage.getItem("store")) {
       this.$store.replaceState(
         Object.assign({}, this.$store.state, JSON.parse(sessionStorage.getItem("store")))
+        
       );
+      console.log(this.$store.state)
       sessionStorage.removeItem("store");
     }
     window.addEventListener("beforeunload", () => {
       sessionStorage.setItem("store", JSON.stringify(this.$store.state));
-    });
+    }); */
   },
 };
 </script>

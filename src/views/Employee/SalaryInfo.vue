@@ -4,12 +4,11 @@
       <el-breadcrumb-item :to="{ path: '/employee/salaryinfo' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>个人工资</el-breadcrumb-item>
     </el-breadcrumb>
-    <SalaryData v-bind:salary="salary" v-bind:paytime="paytime" v-bind:months="months" />
+    <SalaryData v-bind:salary="salary" v-bind:payTime="payTime" v-bind:months="months" />
   </div>
 </template>
 <script>
 import format from "../../until/formateDate";
-import newSalary from "../../until/SalaryAxios";
 import SalaryData from "@/components/SalaryData";
 export default {
   components: {
@@ -18,44 +17,23 @@ export default {
   data() {
     return {
       salary: [],
-      paytime: [],
+      payTime: [],
       months: [],
     };
   },
   methods: {
-    filterHandler(value, row, column) {
-      const property = column["property"];
-      return row[property] === value;
-    },
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
   },
   mounted: function () {
     // console.log(this.$route);
-    // console.log(this.$store.state)
-    /*   newSalary */
-    /*  .getSalary(this.$store.state.data[0].accounts) */
-    this.service.post('/employee/Salary', {accounts:this.$store.state.data[0].accounts})
+    this.service.post('/employee/Salary', { accounts: this.$store.state.loginModule.userInfo.accounts })
       .then((data) => {
-        this.salary = data.map((item) => {
+        /*   console.log(data.data.salaryInfos); */
+        this.salary = data.data.salaryInfos.map((item) => {
           item.payTime = format.formateDate(item.payTime);
+          this.payTime = [...this.payTime, { text: item.payTime, value: item.payTime }]
+          this.months = [...this.months, { text: item.month, value: item.month }]
           return item;
         });
-        this.paytime = data.map((item) => {
-          var values = format.formateDate(item.payTime);
-          var zhi = { text: values, value: values };
-          return zhi;
-        });
-        this.months = data.map((item) => {
-          var values = item.month;
-          var zhi = { text: values, value: values };
-          return zhi;
-        });
-        // console.log(data.data.data);
       })
       .catch((error) => {
         console.log(error);

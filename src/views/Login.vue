@@ -64,14 +64,15 @@ export default {
     };
   },
   methods: {
-    submitForm(formName) {
+    submitForm() {
       let url = '';
       let goUrl = '';
       if (this.radio == "员工") {
         url = 'login'
-        goUrl = '/employee/salaryinfo'
+        goUrl = '/main'
+        /*  goUrl = '/employee/salaryinfo' */
       } else if (this.radio == "二级管理") {
-        url = 'admin'
+        url = '/admin'
         goUrl = '/admin/adminfoupdate'
       } else if (this.radio == "一级管理") {
         url = 'senior'
@@ -81,9 +82,10 @@ export default {
       login(url, this.ruleForm)
         .then((res) => {
           if (res.data.code === 200) {
-            setToken("token", res.data.token)
-            this.$store.commit("getinfo", res.data.data);
-            this.$router.push(goUrl).catch((err) => { });
+            setToken("token", res.data.token);
+            /* this.$store.commit("getInfo", res.data.user); */
+            this.$store.commit("loginModule/setUser", res.data.user);
+            this.$router.push(goUrl);
           }
         })
         .catch((error) => {

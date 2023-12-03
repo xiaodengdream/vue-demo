@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '@/views/Login'
-import PersonInfo from '@/views/Employee/PersonInfo'
-import SalaryInfo from '@/views/Employee/SalaryInfo'
+const Login = () => import('../views/Login.vue')
+const Main = () => import('../views/Main.vue')
+const SalaryInfo = () => import('../views/Employee/SalaryInfo.vue')
+const InfoUpdate = () => import('../views/Employee/InfoUpdate')
+const FindPassword = () => import('../components/FindPassword.vue')
+const PersonInfo = () => import('../views/Employee/PersonInfo.vue')
+
 import Employee from '@/views/Employee/Employee'
-import InfoUpdate from '@/views/Employee/InfoUpdate'
 import Admin from '@/views/Admin/Admin'
 import Employees from '@/views/Admin/Employees'
 import AdminInfo from '@/views/Admin/AdminInfo'
@@ -20,6 +23,15 @@ Vue.use(VueRouter)
 const routes = [
   { path: '/', redirect: 'login' },
   { path: '/login', name: 'Login', component: Login },
+  {
+    path: '/main', name: 'Main', component: Main, children: [
+      { path: 'salaryinfo', name: 'salaryinfo', component: SalaryInfo },
+      { path: 'infoupdate', name: 'infoupdate', component: InfoUpdate },
+      { path: 'findPassword', name: 'findPassword', component: FindPassword },
+      { path: 'personinfo', name: 'personinfo', component: PersonInfo },
+      { path: '/', redirect: 'salaryinfo' },
+    ]
+  },
   {
     path: '/admin', name: 'admin', component: Admin, children: [
       {
