@@ -1,77 +1,49 @@
 <template>
-  <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right" id="body_title">
-      <el-breadcrumb-item :to="{ path: '/admin/adminfoupdate' }"
-        >首页</el-breadcrumb-item
-      >
-      <el-breadcrumb-item>个人首页</el-breadcrumb-item>
-    </el-breadcrumb>
     <div class="body_form">
-      <el-form
-        ref="form"
-        label-width="80px"
-        :label-position="labelPosition"
-        style="width: 40%; margin: 5% 5% 5% 5%"
-      >
+      <el-form ref="form" :model="formData" label-width="80px" :label-position="labelPosition"
+        style="width: 40%; margin: 5% 5% 5% 5%">
         <el-form-item label="工号">
-          <el-input v-model="accounts" disabled></el-input>
+          <el-input v-model="formData.accounts" disabled></el-input>
         </el-form-item>
         <el-form-item label="邮箱">
-          <el-input
-            v-model="email"
-            @blur="verification(email, '邮箱')"
-          ></el-input>
+          <el-input v-model="formData.email" @blur="verification(formData.formData.email, '邮箱')"></el-input>
         </el-form-item>
         <el-form-item label="身份证">
-          <el-input
-            v-model="idcard"
-            @blur="verification(idcard, '身份证')"
-          ></el-input>
+          <el-input v-model="formData.idcard" @blur="verification(formData.idcard, '身份证')"></el-input>
         </el-form-item>
         <el-form-item label="电话">
-          <el-input
-            v-model="telephone"
-            @blur="verification(telephone, '电话')"
-          ></el-input>
+          <el-input v-model="formData.telephone" @blur="verification(formData.telephone, '电话')"></el-input>
         </el-form-item>
         <el-form-item label="科室">
-          <el-input v-model="department" disabled></el-input>
+          <el-input v-model="formData.department" disabled></el-input>
         </el-form-item>
         <el-form-item>
           <div style="float: left">
-            <el-popconfirm
-              cancel-button-text="取消"
-              confirm-button-text="确定"
-              icon="el-icon-circle-check"
-              icon-color="#007bff"
-              title="个人信息内容确定修改吗？"
-              @confirm="onSubmit"
-            >
+            <el-popconfirm cancel-button-text="取消" confirm-button-text="确定" icon="el-icon-circle-check"
+              icon-color="#007bff" title="个人信息内容确定修改吗？" @confirm="onSubmit">
               <el-button slot="reference" type="primary">确定修改</el-button>
             </el-popconfirm>
 
-            <el-button style="margin-left: 22px" type="success" @click="onClear"
-              >清空表单</el-button
-            >
+            <el-button style="margin-left: 22px" type="success" @click="onClear">清空表单</el-button>
           </div>
         </el-form-item>
       </el-form>
     </div>
-  </div>
 </template>
 <script>
-import newAdminInfo from "../../until/AdminAxios";
 export default {
   data() {
     return {
-      accounts: "",
-      name: "",
-      professional: "",
-      email: "",
-      idcard: "",
-      telephone: "",
-      department: "",
-      posttype: "",
+      formData: {
+        accounts: "",
+        name: "",
+        professional: "",
+        email: "",
+        idcard: "",
+        telephone: "",
+        department: "",
+        posttype: "",
+      },
       labelPosition: "left",
     };
   },
@@ -90,28 +62,17 @@ export default {
           duration: 1000,
         });
       } else {
-        newAdminInfo.updateAdminInfo(
-          this.email,
-          this.idcard,
-          this.telephone,
-          this.accounts
-        );
-        this.$message({
-          showClose: true,
-          message: " 更新成功",
-          type: "success",
-          duration: 1000,
-        });
+        console.log(this.formData);
+        this.service.post('/admin/infoUpdates', this.formData);
       }
       setTimeout(() => {
         location.reload();
       }, 1000);
     },
     onClear() {
-      this.name = "";
-      this.email = "";
-      this.idcard = "";
-      this.telephone = "";
+      this.formData.email = "";
+      this.formData.idcard = "";
+      this.formData.telephone = "";
     },
     verification(value, label) {
       if (value == "") {
@@ -125,18 +86,7 @@ export default {
     },
   },
   mounted: function () {
-    //console.log(this.$store.state.data[0])
-    newAdminInfo.getAdminInfo(this.$store.state.data[0].accounts).then((data) => {
-      this.$store.commit("getinfo", data);
-      this.accounts = this.$store.state.data[0].accounts;
-      this.name = this.$store.state.data[0].name;
-      this.professional = this.$store.state.data[0].professional;
-      this.email = this.$store.state.data[0].email;
-      this.idcard = this.$store.state.data[0].idcard;
-      this.telephone = this.$store.state.data[0].telephone;
-      this.department = this.$store.state.data[0].department;
-      this.posttype = this.$store.state.data[0].posttype;
-    });
+    this.formData = this.$store.state.loginModule.userInfo
   },
 };
 </script>
@@ -148,6 +98,7 @@ export default {
   align-items: center;
   margin: 28px 0 28px 50px;
 }
+
 .body_form {
   width: 80%;
   margin: 0 0 20px 10%;

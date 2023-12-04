@@ -29,15 +29,16 @@
             <div class="left">
                 <el-menu :default-active="this.$route.name" class="el-menu-vertical-demo" @open="handleOpen"
                     @close="handleClose" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router>
-                    <el-menu-item index="salaryinfo">
+                    <el-menu-item index="salary">
                         <i class="el-icon-s-home"></i>
-                        <span>个人首页</span>
+                        <span v-if="this.role===1">个人工资</span>
+                        <span v-if="this.role===2">工资管理</span>
                     </el-menu-item>
-                    <el-menu-item index="salarysinfo" :disabled="this.role === 1 ? true : false">
-                        <i class="el-icon-menu"></i>
-                        <span slot="title">工资管理</span>
+                    <el-menu-item index="employees" v-if="this.role === 2">
+                        <i class="el-icon-document"></i>
+                        <span slot="title">员工管理</span>
                     </el-menu-item>
-                    <el-menu-item index="infoupdate">
+                    <el-menu-item index="infoManage">
                         <i class="el-icon-document"></i>
                         <span slot="title">信息管理</span>
                     </el-menu-item>
@@ -45,7 +46,7 @@
                         <i class="el-icon-setting"></i>
                         <span slot="title">密码找回</span>
                     </el-menu-item>
-                    <el-menu-item index="personinfo">
+                    <el-menu-item index="personManage">
                         <i class="el-icon-s-check"></i>
                         <span slot="title">个人中心</span>
                     </el-menu-item>

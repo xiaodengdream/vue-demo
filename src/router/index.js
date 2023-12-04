@@ -6,14 +6,16 @@ const SalaryInfo = () => import('../views/Employee/SalaryInfo.vue')
 const InfoUpdate = () => import('../views/Employee/InfoUpdate')
 const FindPassword = () => import('../components/FindPassword.vue')
 const PersonInfo = () => import('../views/Employee/PersonInfo.vue')
-
+const SalarysInfo = () => import('../views/Admin/SalarysInfo.vue')
+const Employees = () => import('../views/Admin/Employees.vue')
+const Salary =() => import('../views/Employee/Salary.vue')
+const InfoManage = () => import('../views/Employee/InfoManage.vue')
+const PersonManage = () =>import('../views/Employee/PersonManage.vue')
 import Employee from '@/views/Employee/Employee'
 import Admin from '@/views/Admin/Admin'
-import Employees from '@/views/Admin/Employees'
 import AdminInfo from '@/views/Admin/AdminInfo'
 import AdmInfoUpdate from '@/views/Admin/AdmInfoUpdate'
 import FindPs from '@/views/Employee/FindPs'
-import SalarysInfo from '@/views/Admin/SalarysInfo'
 import Senior from '@/views/SeniorAdmin/Senior'
 import SeniorUpdate from '@/views/SeniorAdmin/SeniorUpdate'
 import SeniorInfo from '@/views/SeniorAdmin/SeniorInfo'
@@ -25,11 +27,12 @@ const routes = [
   { path: '/login', name: 'Login', component: Login },
   {
     path: '/main', name: 'Main', component: Main, children: [
-      { path: 'salaryinfo', name: 'salaryinfo', component: SalaryInfo },
-      { path: 'infoupdate', name: 'infoupdate', component: InfoUpdate },
+      { path: 'salary', name: 'salary', component: Salary },
+      { path: 'infoManage', name: 'infoManage', component: InfoManage },
+      {path: 'employees',name: 'employees',component: Employees},
+      { path: 'personManage', name: 'personManage', component: PersonManage },
       { path: 'findPassword', name: 'findPassword', component: FindPassword },
-      { path: 'personinfo', name: 'personinfo', component: PersonInfo },
-      { path: '/', redirect: 'salaryinfo' },
+      { path: '/', redirect: 'salary' },
     ]
   },
   {

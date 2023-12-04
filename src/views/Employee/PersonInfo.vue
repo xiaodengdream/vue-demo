@@ -1,9 +1,4 @@
 <template>
-  <div class="content">
-    <el-breadcrumb separator-class="el-icon-arrow-right" id="body_title">
-      <el-breadcrumb-item :to="{ path: '/main/salaryinfo' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>个人中心</el-breadcrumb-item>
-    </el-breadcrumb>
     <div class="info">
       <div class="info1">
         <span class="text">工号：{{ userinfo.accounts }}</span>
@@ -22,7 +17,6 @@
         <span class="text">科室：{{ userinfo.department }}</span>
       </div>
     </div>
-  </div>
 </template>
 <script>
 export default {

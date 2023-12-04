@@ -1,8 +1,7 @@
 <template>
     <div>
         <el-breadcrumb separator-class="el-icon-arrow-right" id="body_title">
-            <el-breadcrumb-item v-if="vs1" :to="{ path: '/main/salaryinfo' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item v-if="vs2" :to="{ path: '/admin/adminfoupdate' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="vs1" :to="{ path: '/main/salary' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item>密码找回</el-breadcrumb-item>
         </el-breadcrumb>
         <div class="content">

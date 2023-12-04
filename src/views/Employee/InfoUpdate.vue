@@ -1,52 +1,46 @@
 <template>
-  <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right" id="body_title">
-      <el-breadcrumb-item :to="{ path: '/main/salaryinfo' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>信息管理</el-breadcrumb-item>
-    </el-breadcrumb>
-    <div class="body_form">
-      <el-form ref="form" :model="formData" label-width="80px" :label-position="labelPosition"
-        style="width: 40%; margin: 5% 5% 5% 5%">
-        <el-form-item label="工号">
-          <el-input v-model="formData.accounts" disabled></el-input>
-        </el-form-item>
-        <el-form-item label="姓名">
-          <el-input v-model="formData.name" disabled></el-input>
-        </el-form-item>
-        <el-form-item label="职称">
-          <el-input v-model="formData.professional" disabled></el-input>
-        </el-form-item>
-        <el-form-item label="邮箱">
-          <el-input v-model="formData.email" @blur="verification(formData.email, '邮箱')"></el-input>
-        </el-form-item>
-        <el-form-item label="身份证">
-          <el-input v-model="formData.idcard" @blur="verification(formData.idcard, '身份证')"></el-input>
-        </el-form-item>
-        <el-form-item label="电话">
-          <el-input v-model="formData.telephone" @blur="verification(formData.telephone, '电话')"></el-input>
-        </el-form-item>
-        <el-form-item label="科室">
-          <el-input v-model="formData.department" disabled></el-input>
-        </el-form-item>
-        <el-form-item label="岗位类型">
-          <el-select v-model="formData.posttype" placeholder="请选择活动区域" style="float: left" disabled>
-            <el-option label="A岗位" value="A"></el-option>
-            <el-option label="B岗位" value="B"></el-option>
-            <el-option label="C岗位" value="C"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item>
-          <div style="float: left">
-            <el-popconfirm cancel-button-text="取消" confirm-button-text="确定" icon="el-icon-circle-check"
-              icon-color="#007bff" title="个人信息内容确定修改吗？" @confirm="onSubmit">
-              <el-button slot="reference" type="primary">确定修改</el-button>
-            </el-popconfirm>
+  <div class="body_form">
+    <el-form ref="form" :model="formData" label-width="80px" :label-position="labelPosition"
+      style="width: 40%; margin: 5% 5% 5% 5%">
+      <el-form-item label="工号">
+        <el-input v-model="formData.accounts" disabled></el-input>
+      </el-form-item>
+      <el-form-item label="姓名">
+        <el-input v-model="formData.name" disabled></el-input>
+      </el-form-item>
+      <el-form-item label="职称">
+        <el-input v-model="formData.professional" disabled></el-input>
+      </el-form-item>
+      <el-form-item label="邮箱">
+        <el-input v-model="formData.email" @blur="verification(formData.email, '邮箱')"></el-input>
+      </el-form-item>
+      <el-form-item label="身份证">
+        <el-input v-model="formData.idcard" @blur="verification(formData.idcard, '身份证')"></el-input>
+      </el-form-item>
+      <el-form-item label="电话">
+        <el-input v-model="formData.telephone" @blur="verification(formData.telephone, '电话')"></el-input>
+      </el-form-item>
+      <el-form-item label="科室">
+        <el-input v-model="formData.department" disabled></el-input>
+      </el-form-item>
+      <el-form-item label="岗位类型">
+        <el-select v-model="formData.posttype" placeholder="请选择活动区域" style="float: left" disabled>
+          <el-option label="A岗位" value="A"></el-option>
+          <el-option label="B岗位" value="B"></el-option>
+          <el-option label="C岗位" value="C"></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item>
+        <div style="float: left">
+          <el-popconfirm cancel-button-text="取消" confirm-button-text="确定" icon="el-icon-circle-check" icon-color="#007bff"
+            title="个人信息内容确定修改吗？" @confirm="onSubmit">
+            <el-button slot="reference" type="primary">确定修改</el-button>
+          </el-popconfirm>
 
-            <el-button style="margin-left: 22px" type="success" @click="onClear">清空表单</el-button>
-          </div>
-        </el-form-item>
-      </el-form>
-    </div>
+          <el-button style="margin-left: 22px" type="success" @click="onClear">清空表单</el-button>
+        </div>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 <script>
@@ -81,7 +75,6 @@ export default {
           duration: 1000,
         });
       } else {
-        console.log(this.formData);
         this.service.post('/employee/infoUpdates', this.formData)
       }
       setTimeout(() => {

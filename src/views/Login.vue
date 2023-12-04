@@ -73,7 +73,7 @@ export default {
         /*  goUrl = '/employee/salaryinfo' */
       } else if (this.radio == "二级管理") {
         url = '/admin'
-        goUrl = '/admin/adminfoupdate'
+        goUrl = '/main'
       } else if (this.radio == "一级管理") {
         url = 'senior'
         goUrl = '/senior/seniorupdate'

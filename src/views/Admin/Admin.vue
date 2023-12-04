@@ -46,17 +46,19 @@
         active-text-color="#ffd04b"
         router
       >
-        <el-menu-item index="adminfoupdate">
-          <i class="el-icon-s-home"></i>
-          <span>个人首页</span>
-        </el-menu-item>
+       
         <el-menu-item index="salarysinfo">
           <i class="el-icon-menu"></i>
-          <span slot="title">工资管理</span>
+          <span slot="title">个人首页</span>
         </el-menu-item>
+       
         <el-menu-item index="employees">
           <i class="el-icon-document"></i>
           <span slot="title">员工管理</span>
+        </el-menu-item>
+        <el-menu-item index="adminfoupdate">
+          <i class="el-icon-s-home"></i>
+          <span>信息管理</span>
         </el-menu-item>
         <el-menu-item index="findps">
           <i class="el-icon-setting"></i>
