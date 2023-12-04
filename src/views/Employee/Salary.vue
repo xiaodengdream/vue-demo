@@ -2,11 +2,11 @@
     <div>
         <el-breadcrumb separator-class="el-icon-arrow-right" id="body_title">
             <el-breadcrumb-item :to="{ path: '/main/salary' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item v-if="this.role===1">个人工资</el-breadcrumb-item>
-            <el-breadcrumb-item v-if="this.role===2">工资管理</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.role === 1">个人工资</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="this.role === 2 || this.role === 3">工资管理</el-breadcrumb-item>
         </el-breadcrumb>
         <SalaryData v-if="this.role === 1" v-bind:salary="salary" v-bind:payTime="payTime" v-bind:months="months" />
-        <SalaryManage v-if="this.role === 2" />
+        <SalaryManage v-if="this.role === 2 || this.role === 3" />
     </div>
 </template>
 <script>

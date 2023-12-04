@@ -76,7 +76,7 @@ export default {
         goUrl = '/main'
       } else if (this.radio == "一级管理") {
         url = 'senior'
-        goUrl = '/senior/seniorupdate'
+        goUrl = '/main'
       }
       /* this.service.post(url, this.ruleForm) */
       login(url, this.ruleForm)

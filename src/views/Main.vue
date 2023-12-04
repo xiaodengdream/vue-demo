@@ -31,10 +31,11 @@
                     @close="handleClose" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router>
                     <el-menu-item index="salary">
                         <i class="el-icon-s-home"></i>
-                        <span v-if="this.role===1">个人工资</span>
-                        <span v-if="this.role===2">工资管理</span>
+                        <span v-if="this.role === 1">个人工资</span>
+                        <span v-if="this.role === 2">工资管理</span>
+                        <span v-if="this.role === 3">工资管理</span>
                     </el-menu-item>
-                    <el-menu-item index="employees" v-if="this.role === 2">
+                    <el-menu-item index="employeeManage" v-if="this.role === 2 || this.role === 3">
                         <i class="el-icon-document"></i>
                         <span slot="title">员工管理</span>
                     </el-menu-item>

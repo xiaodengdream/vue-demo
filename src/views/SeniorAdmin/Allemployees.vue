@@ -1,11 +1,5 @@
 <template>
   <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right" id="body_title">
-      <el-breadcrumb-item :to="{ path: '/senior/seniorupdate' }"
-        >首页</el-breadcrumb-item
-      >
-      <el-breadcrumb-item>员工管理</el-breadcrumb-item>
-    </el-breadcrumb>
     <div class="employeesinfo">
       <div class="employees_head">
         <el-dropdown>

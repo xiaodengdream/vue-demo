@@ -6,15 +6,18 @@
         </el-breadcrumb>
         <EmployeeInfoUp v-if="this.role === 1" />
         <AdminInfoUp v-if="this.role === 2" />
+        <SeniorInfoUp v-if="this.role === 3" />
     </div>
 </template>
 <script>
 const EmployeeInfoUp = () => import('../Employee/InfoUpdate.vue')
 const AdminInfoUp = () => import('../Admin/AdmInfoUpdate.vue')
+const SeniorInfoUp = () => import('../SeniorAdmin/SeniorUpdate.vue')
 export default {
     components: {
         EmployeeInfoUp,
         AdminInfoUp,
+        SeniorInfoUp
     },
     data() {
         return {
