@@ -1,32 +1,31 @@
 <template>
-    <div class="info">
-      <div class="info1">
-        <span class="text">工号：{{ userinfo.accounts }}</span>
-        <span class="text">职称：{{ userinfo.professional }}</span>
-      </div>
-      <div class="info1">
-        <span class="text">姓名：{{ userinfo.name }}</span>
-        <span class="text">邮箱：{{ userinfo.email }}</span>
-      </div>
-      <div class="info1">
-        <span class="text">身份证：{{ userinfo.idcard }}</span>
-        <span class="text">岗位类型：{{ userinfo.posttype }}</span>
-      </div>
-      <div class="info1">
-        <span class="text">电话：{{ userinfo.telephone }}</span>
-        <span class="text">科室：{{ userinfo.department }}</span>
-      </div>
+  <div class="info">
+    <div class="info1">
+      <span class="text">工号：{{ userinfo.accounts }}</span>
+      <span class="text">职称：{{ userinfo.professional }}</span>
     </div>
+    <div class="info1">
+      <span class="text">姓名：{{ userinfo.name }}</span>
+      <span class="text">邮箱：{{ userinfo.email }}</span>
+    </div>
+    <div class="info1">
+      <span class="text">身份证：{{ userinfo.idcard }}</span>
+      <span class="text">岗位类型：{{ userinfo.posttype }}</span>
+    </div>
+    <div class="info1">
+      <span class="text">电话：{{ userinfo.telephone }}</span>
+      <span class="text">科室：{{ userinfo.department }}</span>
+    </div>
+  </div>
 </template>
 <script>
 export default {
   data() {
     return {
-
+      userinfo: ''
     };
   },
-  created: function () {
-    
+  created() {
     this.userinfo = this.$store.state.loginModule.userInfo
   },
 };

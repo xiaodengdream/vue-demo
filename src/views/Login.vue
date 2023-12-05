@@ -66,17 +66,13 @@ export default {
   methods: {
     submitForm() {
       let url = '';
-      let goUrl = '';
+      let goUrl = '/main/salary';
       if (this.radio == "员工") {
         url = 'login'
-        goUrl = '/main'
-        /*  goUrl = '/employee/salaryinfo' */
       } else if (this.radio == "二级管理") {
         url = '/admin'
-        goUrl = '/main'
       } else if (this.radio == "一级管理") {
         url = 'senior'
-        goUrl = '/main'
       }
       /* this.service.post(url, this.ruleForm) */
       login(url, this.ruleForm)

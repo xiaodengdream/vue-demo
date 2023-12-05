@@ -5,7 +5,9 @@
             <el-breadcrumb-item v-if="this.role === 1">个人工资</el-breadcrumb-item>
             <el-breadcrumb-item v-if="this.role === 2 || this.role === 3">工资管理</el-breadcrumb-item>
         </el-breadcrumb>
+        <!-- 各人工资查看 -->
         <SalaryData v-if="this.role === 1" v-bind:salary="salary" v-bind:payTime="payTime" v-bind:months="months" />
+        <!-- 所有员工工资管理 -->
         <SalaryManage v-if="this.role === 2 || this.role === 3" />
     </div>
 </template>
@@ -33,7 +35,6 @@ export default {
     },
     mounted() {
         if (this.role === 1) {
-            console.log(2);
             this.service.post('/employee/Salary', { accounts: this.$store.state.loginModule.userInfo.accounts })
                 .then((data) => {
                     this.salary = data.data.salaryInfos.map((item) => {

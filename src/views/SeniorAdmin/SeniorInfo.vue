@@ -16,7 +16,7 @@ export default {
       userinfo: ''
     };
   },
-  mounted() {
+  created() {
     this.userinfo = this.$store.state.loginModule.userInfo
   },
 };

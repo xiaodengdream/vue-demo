@@ -61,6 +61,7 @@ export default {
     };
   },
   methods: {
+    /* 更新员工信息 */
     onSubmit() {
       if (
         this.email == "" ||
@@ -75,7 +76,11 @@ export default {
           duration: 1000,
         });
       } else {
-        this.service.post('/employee/infoUpdates', this.formData)
+        this.service.post('/employee/infoUpdates', this.formData).then((res) => {
+          if (res.data.result) {
+            this.$store.commit("loginModule/setUser", this.formData);//更新后改变修改vuex中stata
+          }
+        })//更新员工信息
       }
       setTimeout(() => {
         location.reload();
@@ -97,7 +102,7 @@ export default {
       }
     },
   },
-  mounted: function () {
+  created() {
     this.formData = this.$store.state.loginModule.userInfo//vuex中的userInfo拿出
   },
 };

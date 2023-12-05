@@ -17,11 +17,11 @@
 export default {
   data() {
     return {
-      userinfo: this.$store.state.loginModule.userInfo,
+      userinfo: ''
     };
   },
-  mounted: function () {
-    /* console.log(this.$store.state.loginModule.userInfo); */
+  created() {
+    this.userinfo = this.$store.state.loginModule.userInfo
   },
 };
 </script>
@@ -56,4 +56,5 @@ export default {
   width: 50%;
   font-size: 18px;
   text-align: left;
-}</style>
+}
+</style>

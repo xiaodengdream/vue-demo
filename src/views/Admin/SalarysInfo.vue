@@ -3,7 +3,7 @@
     <div class="employeesinfo">
       <div class="employees_head">
         <el-button type="primary" size="medium" @click="SalaryDia('新增工资')">新增工资</el-button>
-        <el-input style="width: 30%" v-model="search" size="medium" prefix-icon="el-icon-search" placeholder="输入关键字搜索" />
+        <el-input style="width: 30%" v-model="search" size="medium" prefix-icon="el-icon-search" placeholder="输入关键字姓名搜索" />
       </div>
       <div class="employees_table">
         <el-table :data="this.salarys
@@ -181,14 +181,25 @@ export default {
     };
   },
   methods: {
-    //工资对话框
+    /* 拿到所有工资信息 */
+    getSalaryinfos() {
+      this.service.get('/employees/salary').then((res) => {
+        this.salarys = res.data.lists.map((item) => {
+          item.payTime = format.formateDate(item.payTime);
+          return item;
+        });
+      })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    /*  新增或者更新工资对话框 */
     SalaryDia(e) {
       this.status = e
       this.dialogTableVisible = true;
     },
-    //新增或者更新工资接口
+   /*  新增或者更新工资接口 */
     onsubmit() {
-      console.log(this.formData);
       if (this.status === '新增工资') {
         this.service.post('/employee/salary/add', this.formData)
       } else {
@@ -201,12 +212,12 @@ export default {
     onClear() {
       this.formData = ''
     },
-    //编辑对应的工号工资
+    /* 编辑对应的工号工资 */
     handleEdit(index, row) {
       this.SalaryDia('更新工资')
       this.formData = row;
     },
-    //删除对应的工号工资
+   /*  删除对应的工号工资 */
     handleDelete(index, row) {
       this.service.post('/employee/salary/delete', { id: row.id });
       setTimeout(() => {
@@ -221,16 +232,8 @@ export default {
       return row[property] === value;
     },
   },
-  mounted() {
-    this.service.get('/employees/salary').then((res) => {
-      this.salarys = res.data.lists.map((item) => {
-        item.payTime = format.formateDate(item.payTime);
-        return item;
-      });
-    })
-      .catch((error) => {
-        console.log(error);
-      });
+  created() {
+    this.getSalaryinfos()
   },
 };
 </script>

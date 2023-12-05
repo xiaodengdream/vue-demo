@@ -74,7 +74,7 @@ export default {
       }
     },
   },
-  mounted() {
+  created() {
     this.formData = this.$store.state.loginModule.userInfo
   },
 };
